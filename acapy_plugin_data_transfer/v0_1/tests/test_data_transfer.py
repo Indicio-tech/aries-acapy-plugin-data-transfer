@@ -26,7 +26,6 @@ def context():
     # pylint: disable=W0621
     context = RequestContext()
     context.message = ProvideData(goal_code="test_goal", data=[TEST_DATA])
-    print(context.message.serialize(as_string=True))
     context.connection_record = ConnectionRecord(connection_id=TEST_CONN_ID)
     context.connection_ready = True
     yield context
@@ -43,4 +42,4 @@ async def test_provide_data_handler(context):
     assert len(responder.webhooks) == 1
     topic, payload = responder.webhooks[0]
     assert topic == "data-transfer/test_goal"
-    assert payload == {"data": [TEST_DATA]}
+    assert payload == {"data": [TEST_DATA.serialize()]}

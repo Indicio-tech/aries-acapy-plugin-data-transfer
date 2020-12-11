@@ -67,7 +67,9 @@ class ProvideDataHandler(BaseHandler):
         )
         assert isinstance(context.message, ProvideData)
 
+        data: Sequence[AttachDecorator] = context.message.data
+
         await responder.send_webhook(
             topic=f"{self.WEBHOOK_TOPIC}/{context.message.goal_code}",
-            payload={"data": context.message.data},
+            payload={"data": list(map(lambda datum: datum.serialize(), data))},
         )
