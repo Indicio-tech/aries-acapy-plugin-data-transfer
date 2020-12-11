@@ -12,18 +12,7 @@ from aries_cloudagent.messaging.decorators.attach_decorator import (
 from aries_cloudagent.messaging.request_context import RequestContext
 from marshmallow import fields
 
-PROTOCOL = "https://didcomm.org/data-transfer"
-VERSION = "0.1"
-BASE = "{}/{}".format(PROTOCOL, VERSION)
-
-REQUEST_DATA = "{}/request-data".format(BASE)
-PROVIDE_DATA = "{}/provide-data".format(BASE)
-
-HERE = "acapy_plugin_data_transfer.data_transfer"
-MESSAGE_TYPES = {
-    PROVIDE_DATA: f"{HERE}.ProvideData",
-}
-
+from .message_types import PROVIDE_DATA
 
 LOGGER = logging.getLogger(__name__)
 
@@ -34,8 +23,8 @@ class ProvideData(AgentMessage):
     class Meta:
         """ProvideData metadata."""
 
-        handler_class = f"{HERE}.ProvideDataHandler"
-        schema_class = f"{HERE}.ProvideDataSchema"
+        handler_class = "ProvideDataHandler"
+        schema_class = "ProvideDataSchema"
         message_type = PROVIDE_DATA
 
     def __init__(

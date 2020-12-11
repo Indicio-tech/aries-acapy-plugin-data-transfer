@@ -26,6 +26,7 @@ def context():
     # pylint: disable=W0621
     context = RequestContext()
     context.message = ProvideData(goal_code="test_goal", data=[TEST_DATA])
+    print(context.message.serialize(as_string=True))
     context.connection_record = ConnectionRecord(connection_id=TEST_CONN_ID)
     context.connection_ready = True
     yield context
