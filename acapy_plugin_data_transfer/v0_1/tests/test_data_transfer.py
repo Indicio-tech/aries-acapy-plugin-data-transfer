@@ -42,4 +42,6 @@ async def test_provide_data_handler(context):
     assert len(responder.webhooks) == 1
     topic, payload = responder.webhooks[0]
     assert topic == "data-transfer/test_goal"
-    assert payload == {"data": [TEST_DATA.serialize()]}
+    assert payload == {
+        "connection_id": TEST_CONN_ID, "data": [TEST_DATA.serialize()]
+    }
