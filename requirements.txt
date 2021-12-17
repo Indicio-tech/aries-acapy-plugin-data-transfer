@@ -1,3 +1,3 @@
-aries-cloudagent[indy]@git+https://github.com/hyperledger/aries-cloudagent-python@0.5.4
+aries-cloudagent[indy]@git+https://github.com/hyperledger/aries-cloudagent-python@0.7.3-rc0
 marshmallow==3.0.0
 flake8
