@@ -1,3 +1,0 @@
-aries-cloudagent[indy]>=0.7.0
-marshmallow>=3.0.0
-flake8
