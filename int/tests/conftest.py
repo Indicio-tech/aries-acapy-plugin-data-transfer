@@ -127,4 +127,3 @@ async def connection(
             their_vk=agent_connection.my_verkey,
         )
     yield conn
-

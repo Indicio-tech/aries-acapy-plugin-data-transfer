@@ -2,12 +2,11 @@
 import logging
 from typing import Sequence
 
-from aries_cloudagent.messaging.agent_message import (
-    AgentMessage, AgentMessageSchema
-)
+from aries_cloudagent.messaging.agent_message import AgentMessage, AgentMessageSchema
 from aries_cloudagent.messaging.base_handler import BaseHandler, BaseResponder
 from aries_cloudagent.messaging.decorators.attach_decorator import (
-    AttachDecorator, AttachDecoratorSchema
+    AttachDecorator,
+    AttachDecoratorSchema,
 )
 from aries_cloudagent.messaging.request_context import RequestContext
 from marshmallow import fields
@@ -62,9 +61,7 @@ class ProvideDataHandler(BaseHandler):
 
     async def handle(self, context: RequestContext, responder: BaseResponder):
         """Handle provide data message."""
-        LOGGER.debug(
-            "Received data through provide-data message: %s", context.message
-        )
+        LOGGER.debug("Received data through provide-data message: %s", context.message)
         assert isinstance(context.message, ProvideData)
         assert context.connection_record
 
@@ -74,6 +71,6 @@ class ProvideDataHandler(BaseHandler):
             topic=f"acapy::webhook::{self.WEBHOOK_TOPIC}/{context.message.goal_code}",
             payload={
                 "connection_id": context.connection_record.connection_id,
-                "data": [datum.serialize() for datum in data]
+                "data": [datum.serialize() for datum in data],
             },
         )
