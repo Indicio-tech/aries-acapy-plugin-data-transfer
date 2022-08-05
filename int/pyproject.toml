@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "acapy-plugin-data-transfer-int-tests"
+version = "0.1.0"
+description = "Integration tests for ACA-Py Data Transfer Plugin"
+authors = ["Daniel Bluhm <dbluhm@pm.me>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pytest = "^6.2.5"
+pytest-asyncio = "^0.16.0"
+echo-agent = { git = "https://github.com/Indicio-tech/echo-agent.git", rev = "v0.1.2", extras = [
+    "client",
+] }
+acapy-client = {git = "https://github.com/Indicio-tech/acapy-client.git", rev = "0.7.4"}
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+flake8 = "^5.0.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

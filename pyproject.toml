@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "acapy-plugin-data-transfer"
+version = "0.1.0"
+description = "Aries Cloud Agent - Python Plugin for Data Transfer protocol"
+authors = ["Daniel Bluhm <dbluhm@pm.me>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.6.9"
+aries-cloudagent = "^0.7.0"
+marshmallow = "^3.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "<7.1.2"
+pytest-asyncio = "<0.19.0"
+flake8 = "^5.0.4"
+black = "^22.6.0"
+pre-commit = "<2.20.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
