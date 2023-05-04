@@ -7,7 +7,7 @@ license = "Apache-2.0"
 
 [tool.poetry.dependencies]
 python = "^3.6.9"
-aries-cloudagent = "^0.7.0"
+aries-cloudagent = "^0.8.1"
 marshmallow = "^3.5.1"
 
 [tool.poetry.dev-dependencies]
