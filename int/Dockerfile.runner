@@ -1,8 +1,9 @@
-FROM python:3.7
+FROM python:3.9-slim
 WORKDIR /usr/src/app/
 
-ENV POETRY_VERSION=1.1.11
+ENV POETRY_VERSION=1.4.2
 ENV POETRY_HOME=/opt/poetry
+RUN apt-get update && apt-get install -y curl && apt-get clean
 RUN curl -sSL https://install.python-poetry.org | python -
 
 ENV PATH="/opt/poetry/bin:$PATH"

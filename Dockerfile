@@ -1,10 +1,12 @@
-FROM bcgovimages/von-image:py36-1.16-1 AS base
+FROM python:3.9-slim AS base
+WORKDIR /usr/src/app
 
 # Install and configure poetry
 USER root
 
-ENV POETRY_VERSION=1.1.11
+ENV POETRY_VERSION=1.4.2
 ENV POETRY_HOME=/opt/poetry
+RUN apt-get update && apt-get install -y curl && apt-get clean
 RUN curl -sSL https://install.python-poetry.org | python -
 
 ENV PATH="/opt/poetry/bin:$PATH"
@@ -17,11 +19,12 @@ ARG install_flags=--no-dev
 RUN poetry install ${install_flags}
 USER $user
 
-FROM bcgovimages/von-image:py36-1.16-1
-COPY --from=base /home/indy/.venv /home/indy/.venv
-ENV PATH="/home/indy/.venv/bin:$PATH"
-EXPOSE 80
+FROM python:3.9-slim
+WORKDIR /usr/src/app
+COPY --from=base /usr/src/app/.venv /usr/src/app/.venv
+ENV PATH="/usr/src/app/.venv/bin:$PATH"
 
+COPY healthcheck.py ./
 COPY acapy_plugin_data_transfer/ acapy_plugin_data_transfer/
 
 ENTRYPOINT ["/bin/bash", "-c", "aca-py \"$@\"", "--"]
